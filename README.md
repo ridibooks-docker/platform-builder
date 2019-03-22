@@ -1,6 +1,5 @@
-# node-composer
-[![Build Status](https://travis-ci.com/imkitae/docker-node-composer.svg?branch=master)](https://travis-ci.com/imkitae/docker-node-composer)
-[![](https://images.microbadger.com/badges/version/ktkang/node-composer.svg)](http://microbadger.com/images/ktkang/node-composer)
-[![](https://images.microbadger.com/badges/image/ktkang/node-composer.svg)](http://microbadger.com/images/ktkang/node-composer)
+# platform-builder
+[![](https://images.microbadger.com/badges/version/ridibooks/platform-builder.svg)](http://microbadger.com/images/ridibooks/platform-builder)
+[![](https://images.microbadger.com/badges/image/ridibooks/platform-builder.svg)](http://microbadger.com/images/ridibooks/platform-builder)
 
 Docker image installed Node + Composer
