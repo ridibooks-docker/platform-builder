@@ -2,25 +2,43 @@ FROM node:10.6.0-alpine
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /root
-ENV COMPOSER_VERSION 1.6.5
+ENV COMPOSER_VERSION 1.8.4
 
 RUN apk --no-cache add \
     git \
+    bash \
     openssh-client \
+    zip \
+    curl \
+    zlib \
+    libjpeg-turbo \
+    libjpeg-turbo-dev \
+    libpng \
+    libpng-dev \
+    jpegoptim \
     php7 \
     php7-curl \
     php7-iconv \
     php7-mbstring \
     php7-json \
     php7-openssl \
-    php7-phar
+    php7-phar \
+    php7-dom \
+    php7-pdo \
+    php7-pdo_mysql \
+    php7-session \
+    php7-gd \
+    php7-fileinfo \
+    php7-simplexml \
+    php7-zip
+
+
 
 ## Install Composer
-RUN apk add --no-cache --virtual .build-deps curl \
-    && curl -sfLo /tmp/installer.php https://raw.githubusercontent.com/composer/getcomposer.org/b107d959a5924af895807021fcef4ffec5a76aa9/web/installer \
+RUN curl --silent --fail --location --retry 3 --output /tmp/installer.php --url https://raw.githubusercontent.com/composer/getcomposer.org/cb19f2aa3aeaa2006c0cd69a7ef011eb31463067/web/installer \
     && php -r " \
-        \$signature = '544e09ee996cdf60ece3804abc52599c22b1f40f4323403c44d44fdfdd586475ca9813a858088ffbc1f233e9b180f061'; \
-        \$hash = hash('SHA384', file_get_contents('/tmp/installer.php')); \
+        \$signature = '48e3236262b34d30969dca3c37281b3b4bbe3221bda826ac6a9a62d6444cdb0dcd0615698a5cbe587c3f0fe57a54d8f5'; \
+        \$hash = hash('sha384', file_get_contents('/tmp/installer.php')); \
         if (!hash_equals(\$signature, \$hash)) { \
             unlink('/tmp/installer.php'); \
             echo 'Integrity check failed, installer is either corrupt or worse.' . PHP_EOL; \
@@ -31,7 +49,9 @@ RUN apk add --no-cache --virtual .build-deps curl \
     && composer global require hirak/prestissimo \
     && rm -rf /root/.composer/cache/* \
     && rm -rf /tmp/* \
-    && apk del .build-deps
+
+RUN apk del -v .build-deps \
+&& rm -rf /var/cache/apk/*
 
 ENTRYPOINT ["/bin/sh", "-c"]
 CMD ["node"]

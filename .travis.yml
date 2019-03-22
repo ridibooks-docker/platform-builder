@@ -5,7 +5,7 @@ services:
   - docker
 
 env:
-  - IMAGE_REPO=ktkang/node-composer DOCKER_TAG=${TRAVIS_TAG}
+  - IMAGE_REPO=ridibooks/platform-builder DOCKER_TAG=${TRAVIS_TAG}
 
 script:
   - bin/build.sh
