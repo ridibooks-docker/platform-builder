@@ -1,8 +1,8 @@
-FROM node:10.6.0-alpine
+FROM node:13.5.0-alpine
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /root
-ENV COMPOSER_VERSION 1.8.4
+ENV COMPOSER_VERSION 1.9.1
 
 RUN apk --no-cache add \
     git \
@@ -36,9 +36,9 @@ RUN apk --no-cache add \
 
 
 ## Install Composer
-RUN curl --silent --fail --location --retry 3 --output /tmp/installer.php --url https://raw.githubusercontent.com/composer/getcomposer.org/cb19f2aa3aeaa2006c0cd69a7ef011eb31463067/web/installer \
+RUN curl --silent --fail --location --retry 3 --output /tmp/installer.php --url https://raw.githubusercontent.com/composer/getcomposer.org/2208570310e0b7d5683ba4f96dc8b95294e04914/web/installer \
     && php -r " \
-        \$signature = '48e3236262b34d30969dca3c37281b3b4bbe3221bda826ac6a9a62d6444cdb0dcd0615698a5cbe587c3f0fe57a54d8f5'; \
+        \$signature = 'baf1608c33254d00611ac1705c1d9958c817a1a33bce370c0595974b342601bd80b92a3f46067da89e3b06bff421f182'; \
         \$hash = hash('sha384', file_get_contents('/tmp/installer.php')); \
         if (!hash_equals(\$signature, \$hash)) { \
             unlink('/tmp/installer.php'); \
