@@ -31,7 +31,8 @@ RUN apk --no-cache add \
     php7-gd \
     php7-fileinfo \
     php7-simplexml \
-    php7-zip
+    php7-zip \
+    php7-gmp
 
 
 
