@@ -15,9 +15,22 @@ RUN apk --no-cache add \
     libjpeg-turbo-dev \
     libpng \
     libpng-dev \
+    libzip \
+    libzip-dev \
+    icu \
+    icu-dev \
     jpegoptim \
-    npm
-
+    npm \
+&& docker-php-source extract \
+&& docker-php-ext-install \
+    pdo \
+    pdo_mysql \
+    zip \
+    gd \
+    intl \
+    shmop \
+    opcache \
+&& docker-php-source delete
 
 
 ## Install Composer
