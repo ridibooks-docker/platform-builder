@@ -1,8 +1,8 @@
-FROM node:13.5.0-alpine
+FROM php:7.4-alpine
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 ENV COMPOSER_HOME /root
-ENV COMPOSER_VERSION 1.9.1
+ENV COMPOSER_VERSION 1.10.8
 
 RUN apk --no-cache add \
     git \
@@ -16,23 +16,7 @@ RUN apk --no-cache add \
     libpng \
     libpng-dev \
     jpegoptim \
-    php7 \
-    php7-curl \
-    php7-iconv \
-    php7-intl \
-    php7-mbstring \
-    php7-json \
-    php7-openssl \
-    php7-phar \
-    php7-dom \
-    php7-pdo \
-    php7-pdo_mysql \
-    php7-session \
-    php7-gd \
-    php7-fileinfo \
-    php7-simplexml \
-    php7-zip \
-    php7-gmp
+    npm
 
 
 
@@ -50,10 +34,9 @@ RUN curl --silent --fail --location --retry 3 --output /tmp/installer.php --url 
     && composer --ansi --version --no-interaction \
     && composer global require hirak/prestissimo \
     && rm -rf /root/.composer/cache/* \
-    && rm -rf /tmp/* \
+    && rm -rf /tmp/*
 
-RUN apk del -v .build-deps \
-&& rm -rf /var/cache/apk/*
+RUN rm -rf /var/cache/apk/*
 
 ENTRYPOINT ["/bin/sh", "-c"]
 CMD ["node"]
