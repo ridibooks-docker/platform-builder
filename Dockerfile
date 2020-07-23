@@ -21,6 +21,8 @@ RUN apk --no-cache add \
     icu-dev \
     jpegoptim \
     npm \
+    gmp \
+    gmp-dev \
 && docker-php-source extract \
 && docker-php-ext-install \
     pdo \
@@ -30,6 +32,7 @@ RUN apk --no-cache add \
     intl \
     shmop \
     opcache \
+    gmp \
 && docker-php-source delete
 
 
